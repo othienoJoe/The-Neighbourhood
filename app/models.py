@@ -1,11 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
-from tinymyce
+from tinymce.models import HTMLField
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 Priority=(
-    ('Low Priority','Low Priority'),
-    ('High Priority','High Priority'),
+	('Low Priority','Low Priority'),
+	('High Priority','High Priority'),
 )
 
 class neighborhood(models.Model):
