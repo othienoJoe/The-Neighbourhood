@@ -25,3 +25,4 @@ class notificationsForm(forms.ModelForm):
   class Meta:
 			model = Update
 			exclude=['author','neighborhood','post_date']
+			
