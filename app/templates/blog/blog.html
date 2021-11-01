@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 top-div" style="margin-top:40px;"></div>
+	</div>
+
+	<div class="text-center">
+		<a href="{% url 'new-blogpost' %}">
+			<button class="btn btn-primary" style="height:50px;  margin-top: -6px;">Create BlogPost</button>
+		</a>
+	</div>
+
+	<div class="row">
+		{% for blog in blogposts %}
+		<div class="col-md-6">
+			<div class="card" style="width: 30rem;margin-top:10px;">
+				<div class="card-body">
+					<a href="/view/blog/{{blog.id}}" style="color:black;text-decoration:none;margin:auto;">
+						<h5 class="card-title">{{blog.title}}</h5>
+					</a>
+					<a href="/user/{{blog.username}}" style="color:black;text-decoration:none;margin:auto;">
+						<h6 class="card-subtitle mb-2 text-muted">{{blog.username}}</h6>
+					</a>
+					<p class="card-text">{{blog.post|truncatechars:150 | safe}}</p>
+					<a href="/view/blog/{{blog.id}}" class="card-link">Continue reading</a>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+  <div class="card" style="width: 50rem;">
+		<h5 class="card-title">{{blog.title}}</h5>
+		<a href="/user/{{blog.username}}" style="color:black;text-decoration:none;margin:auto;">
+			<h6 class="card-subtitle mb-2 text-muted">{{blog.username}}</h6>
+		</a>
+		<img class="card-img-top" src="{{blog.image.url}}">
+
+		<div class="card-body">
+			<p class="card-text">{{blog.post | safe}}</p>
+		</div>
+
+    <div class="card-footer">
+
+			{% if comments%}
+			<h4 class="text-center">Comments</h4>
+			{% for comment in comments %}
+			<p>
+				<strong>{{comment.username.username}}</strong> {{comment.comment}}
+			</p>
+			{% endfor %}
+
+			{%else %}
+			<h3 class="text-center">No comments made for this blog post yet</h3>
+			<hr>
+			{% endif %}
+
+			<form action="/view/blog/{{blog.id}}" method="post" enctype="multipart/form-data">
+
+				{%csrf_token%}
+				{% bootstrap_form form%}
+				<div class="text-center">
+					<input id="votes-input" type="submit" class="btn btn-success btn-lg" value="Post">
+				</div>
+			</form>
+    </div>
+  </div>
+
+</div>
+
+<!-- Blogs -->
+<div class="card mb-3" style="max-width: 540px;">
+	<div class="row g-0">
+		<div class="col-md-4">
+			<img src="..." class="img-fluid rounded-start" alt="...">
+		</div>
+		<div class="col-md-8">
+			<div class="card-body">
+				<h5 class="card-title">Card title</h5>
+				<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+				<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
