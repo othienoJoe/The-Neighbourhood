@@ -10,13 +10,12 @@ urlpatterns=[
 	url(r'^create/profile$',views.create_profile, name='create-profile'),
 	url(r'^update/profile$',views.update_profile, name='update-profile'),
 	url(r'^blog',views.blog, name='blog'),
-	url(r'^new/blogpost$',views.new_blogpost, name='new-blogpost'), 
-	url(r'^view/blog/(\d+)',views.view_blog,name='view_blog'),
+	url(r'^new/blogpost$',views.new_blogpost, name='new-blogpost'),
 	url(r'^business',views.businesses, name='business'),
 	url(r'^new/business$',views.new_business, name='new-business'),
 	url(r'^health',views.health, name='health'),
-	url(r'^notifications',views.notification, name='notifications'),
-	url(r'^new/notification$',views.new_notification, name='new-notification'),
+	url(r'^updates',views.updates, name='updates'),
+	url(r'^new/update$',views.new_update, name='new-update'),
 	url(r'^search/',views.search_results, name='search_results'), 
 ] 
 
