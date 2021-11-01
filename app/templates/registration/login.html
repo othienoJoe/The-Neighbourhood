@@ -1,0 +1,42 @@
+{% extends 'registration/base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 phone-section">
+			{% if form.errors %}
+			<p>Password or Username is incorrect!</p>
+			{% endif %}
+
+			<div class="panel panel-default" style="margin-top: 250px;">
+				<div class="panel-body">
+					<img src="https://images.unsplash.com/photo-1512699355324-f07e3106dae5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=774&q=80" height=300 class="img-fluid">
+          <div class="text-center">
+						<form action="/accounts/login/" method="post">
+
+								{% csrf_token%}
+								{% bootstrap_form form %}
+
+								<div class="form-group">
+									<input type="submit" class="btn btn-primary login-button" value="Log in">
+								</div>
+
+								<input type="hidden" name="next" value="/">
+
+						</form>
+          </div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-body text-center">
+					<p>Don't Have An Account Yet? <span><a href="/registration/register" class="">Sign Up</a></span></p>
+				</div>
+			</div>
+
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+</div>
+{% endblock %}
